@@ -1,92 +1,854 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Packers & Movers | Make Moving Easy</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agarwal Packers and Movers Ltd.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Agarwal packers and movers, Agarwal movers and packers, Agarwal movers and packers ltd, packers and movers, movers and packers, packers and movers delhi, movers and packers delhi, packers and movers mumbai, movers and packers mumbai, packers and movers bangalore, movers and packers bangalore, packers and movers chennai, movers and packers chennai, packers and movers hyderabad, movers and packers hyderabad, packers and movers noida, movers and packers noida, Agarwal packers and movers delhi, Agarwal movers and packers delhi, Agarwal packers and movers mumbai, Agarwal movers and packers mumbai, Agarwal packers and movers bangalore, Agarwal movers and packers bangalore, Agarwal packers and movers chennai, Agarwal movers and packers chennai, Agarwal packers and movers hyderabad, Agarwal movers and packers hyderabad, Agarwal packers and movers noida, Agarwal movers and packers noida, packers and movers pune, movers and packers pune, packers and movers kolkata, movers and packers kolkata, packers and movers bhubaneshwar, movers and packers bhubaneshwar, Agarwal packers and movers pune, Agarwal movers and packers pune, Agarwal packers and movers kolkata, Agarwal movers and packers kolkata">
+<link href="css/ag-landing.css" rel="stylesheet" type="text/css">
+<link href="css/ag-landing-responsive.css" rel="stylesheet" type="text/css">
+<LINK REL="shortcut icon" HREF="images/favicon.png" />
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+<script type="text/javascript" src="js/waypoints.min.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.min.js"></script>
+<script type="text/javascript" src="js/jquery.marquee.js"></script>
+<script type="text/javascript" src="js/ag-custom.js"></script>
+<script type="text/javascript" src="js/typeahead.js"></script>
+<script type="text/javascript" src="js/aluserctrlsc1410.min.js"></script>
+<script type="text/JavaScript">
+$(document).ready(function () {
+$('.txtCountry').typeahead({
+source: function (query, result) {
+$.ajax({
+url: "server.php",
+data: 'query=' + query,
+dataType: "json",
+type: "POST",
+success: function (data) {
+result($.map(data, function (item) {
+return item;
+}));
+}
+});
+}
+});
+});
+</script>
+<script type="text/JavaScript">
+function genlEnqCTRLM() {
+var chkfrstpgvartyp=document.getElementById('getPgcategory').value;
+if(document.getElementById('Full Name').value == "") {
+requiredFieldValidation('Full Name', 'nerrorMSGdiv');
+validadeName('Full Name', 'nerrorMSGdiv');
+return false;
+}
+if(document.getElementById('Mobile No.').value == "") {
+requiredFieldValidation('Mobile No.', 'mnerrormobilediv');
+validateMobileno('Mobile No.', 'mnerrormobilediv');
+return false;
+}
+if(document.getElementById('Email Id.').value == "") {
+requiredFieldValidation('Email Id.', 'emliderrorMSGdiv');
+verifyEmailId('Email Id.', 'emliderrorMSGdiv');
+return false;
+}
+var gtlocnm=document.getElementById('Location From').value;
+if(document.getElementById('Location From').value == "") {
+requiredFieldValidation('Location From', 'reqcustlocfromeMSG');
+return false;
+}
+var greqlocto = document.getElementById('Location To').value;
+if(chkfrstpgvartyp != "Secure Storage") {
+if(document.getElementById('Location To').value == "") {
+requiredFieldValidation('Location To', 'reqcustloctoeMSG');
+return false;
+}
+} else { var greqlocto ="NA";}
+var gtsecrcodevl=document.getElementById('Captcha Code').value;
+if(gtsecrcodevl == "") {
+requiredFieldValidation('Captcha Code', 'capchaerrorMSGdiv');
+return false;
+}
+$.ajax({
+type:"post",
+url:"global_search.php",
+data:"country="+gtlocnm,
+success:function(gtdata){
+if(gtdata!="Invalid Location"){
+var xmlHttps = '';
+if(window.XMLHttpRequest) { // Mozilla, Safari, ...
+xmlHttps = new XMLHttpRequest();
+} else if (window.ActiveXObject) { // IE
+xmlHttps = new ActiveXObject("Microsoft.XMLHTTP");
+}
+var preqfname = document.getElementById('Full Name').value;
+var preqmno = document.getElementById('Mobile No.').value;
+var preqemaild = document.getElementById('Email Id.').value;
+var preqlocfrom = document.getElementById('Location From').value;
+var sndenqsessdt = "sndfulluacname=" + preqfname + "&sndkycuacemailid=" + preqemaild + "&sndkycuacmobileno=" + preqmno + "&sndpreqlocfrom=" + preqlocfrom + "&sndgreqlocto=" + greqlocto+ "&sndchkfrstpgvartyp=" + chkfrstpgvartyp+ "&sndsecrucodevl=" +gtsecrcodevl;
+xmlHttps.open("POST", "submit-erp.html", true);
+xmlHttps.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xmlHttps.setRequestHeader('Cache-Control', 'private');
+xmlHttps.setRequestHeader('Pragma', 'no-cache');
+xmlHttps.setRequestHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+xmlHttps.send(sndenqsessdt);
+xmlHttps.onreadystatechange = function () {
+if(xmlHttps.readyState == 4) {
+if(xmlHttps.status == 200) {
+var targeturlmst="https://www.agarwalpackers.com/packersandmovers/thankyou.html";
+var bbsburl = targeturlmst;
+window.location = bbsburl;
+}
+}
+}
+} else {
+document.getElementById('Location From').value="";
+document.getElementById('reqcustlocfromeMSG').innerHTML="Invalid Location.";
+document.getElementById('reqcustlocfromeMSG').style.color="#800606";	
+}
+}
+});
+}
+
+function checkagcity(cdivid,emsgdid){setTimeout(function(){
+var gdemobile=document.getElementById(cdivid).value;
+var fdivId=document.getElementById(cdivid);
+var divId=document.getElementById(emsgdid);
+if(gdemobile.length>2){$.ajax({type:"post",
+url:"global_search.php",
+data:"country="+gdemobile,
+success:function(data){
+if(data!=0){fdivId.value="";divId.innerHTML="Invalid Location";
+divId.style.color="#e30808";
+var chks=document.getElementsByClassName('dropdown-menu');
+for(var i=0;i<chks.length;i++){chks[i].style.display='none';}}
+else{divId.innerHTML="";}
+}});}},500);}
+
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KRG4H8GH');</script>
+<!-- End Google Tag Manager -->
+
+
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>[Your Company Name]</h1>
-            <p>Making your move smooth and stress-free since [Year]</p>
-            <div class="header-contact">
-                <a href="tel:+[Phone Number]">
-                    <img src="images/phone-icon.png" alt="Call Us">
-                    <span>[Phone Number]</span>
-                </a>
-                <a href="https://wa.me/[Phone Number]">
-                    <img src="images/whatsapp-icon.png" alt="Whatsapp Us">
-                    <span>Whatsapp Us</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <img src="images/hero-banner.jpg" alt="Family moving to new home">
-        <div class="hero-content">
-            <h2>Moving can be easy, let us show you how.</h2>
-            <p>From packing boxes to loading trucks, we handle everything so you can focus on your new beginnings.</p>
-            <a href="#get-a-quote" class="btn">Get a free quote</a>
-        </div>
-    </section>
-
-    <section class="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="service-cards">
-                <div class="card">
-                    <img src="images/local-move.png" alt="Local Moving">
-                    <h4>Local Moving</h4>
-                    <p>Moving within the city? We make it a breeze.</p>
-                </div>
-                <div class="card">
-                    <img src="images/long-distance-move.png" alt="Long Distance Moving">
-                    <h4>Long Distance Moving</h4>
-                    <p>Across the state or across the country, we'll get you there.</p>
-                </div>
-                <div class="card">
-                    <img src="images/packing-services.png" alt="Packing Services">
-                    <h4>Packing Services</h4>
-                    <p>Leave the packing to us, relax and enjoy the fresh start.</p>
-                </div>
-                <div class="card">
-                    <img src="images/storage-services.png" alt="Storage Services">
-                    <h4>Storage Solutions</h4>
-                    <p>Need temporary or long-term storage? We have you covered.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-choose-us">
-        <div class="container">
-            <h2>Why Choose [Your Company Name]?</h2>
-            <div class="reasons">
-                <div class="reason">
-                    <img src="images/reliable-icon.png" alt="Reliable">
-                    <h3>Reliable and efficient service</h3>
-                    <p>We're committed to getting your belongings to your new home safely and on time.</p>
-                </div>
-                <div class="reason">
-                    <img src="images/experienced-icon.png" alt="Experienced">
-                    <h3>Experienced and trained professionals</h3>
-                    <p>Our team is skilled and dedicated to making your move a positive experience.</p>
-                </div>
-                <div class="reason">
-                    <img src="images/affordable-icon.png" alt="Affordable">
-                    <h3>Competitive and transparent pricing</h3>
-                    <p>We offer upfront quotes with no hidden fees.</p>
-                </div>
-                <div class="reason">
-                    <img src="images/insured-icon.png" alt="Insured">
-                    <h3>Fully insured for your peace of mind</h3>
-                    <p>Your belongings are protected with our comprehensive insurance coverage.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRG4H8GH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="wrap">
+<header class="header">
+<div class="container">
+<div class="logo-left"><img src="images/logo-right.jpg" alt="Agarwal Packers and Movers Ltd. " /></div>
+<div class="center-box"> </div>
+<div class="logo-right"><a href="tel:09300300300"><div class="call"><img src="images/call-us.png" alt="" /> <span>09 300 300 300</span></div></a></div>
+<div class="clear"></div>
+</div>
+</header>
+<div class="marg-top banner">
+<div class="container">
+<img src="images/apml-mobile-banner.webp" class="mobile-banner" alt="mobile view banner">    
+<div class="form lp_enq_form">
+<div class="form-heading">GET a free moving quote</div>
+<form method="post" name="landingEnqform" id="landingEnqform">
+<ul class="clearfix">
+<li class="">
+<input id="getPgcategory" type="hidden" value="Domestic Moving" />
+<input type="text" placeholder="Full Name*" id="Full Name" class="form-control"  onblur="requiredFieldValidation('Full Name','nerrorMSGdiv');validadeName('Full Name','nerrorMSGdiv');">
+<span class="error" id="nerrorMSGdiv"></span>
+</li>
+<li class="">
+<input type="tel" placeholder="Mobile No.*" maxlength="10" pattern="[6789][0-9]{9}" id="Mobile No." class="form-control"  onblur="requiredFieldValidation('Mobile No.','mnerrormobilediv');validateMobileno('Mobile No.','mnerrormobilediv');">
+<span class="error" id="mnerrormobilediv"></span>
+</li>
+<li class="">
+<input type="email" placeholder="Email Address*" id="Email Id." pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" class="form-control" onblur="requiredFieldValidation('Email Id.','emliderrorMSGdiv');verifyEmailId('Email Id.','emliderrorMSGdiv');">
+<span class="error" id="emliderrorMSGdiv"></span>
+</li>
+<li class="">
+<input type="text"  class="txtCountry form-control" placeholder="Location From*" id="Location From" autocomplete="off"  onblur="checkagcity('Location From','reqcustlocfromeMSG');">
+<span class="error first" id="reqcustlocfromeMSG"></span>
+</li>
+<li class="">
+<input type="text" class="txtCountry form-control" placeholder="Location To*" id="Location To" autocomplete="off" onblur="checkagcity('Location To', 'reqcustloctoeMSG');" >
+<span class="error" id="reqcustloctoeMSG"></span>
+</li>
+
+<li class="flex_box">
+<div style="width:63%;">
+<div class="flex_box1 relative_box">
+<input type="text" placeholder="Enter Captcha *" class="captcha_code" id="Captcha Code" style="width:80%" onblur="requiredFieldValidation('Captcha Code','capchaerrorMSGdiv');authchkcaptchavl('Captcha Code','capchaerrorMSGdiv');">
+<span class="captcha" style="top: 0px;bottom: auto;padding-top: 2px;right: 0; background: #000;height: 28px;"><img src="captcha.php" alt="img" />
+</span>
+<span class="error" id="capchaerrorMSGdiv"></span>
+</div>
+
+
+</div>
+<div class="sub-but-li" style="width:35%;">
+<input type="button" value="Submit" id="landingEnqform" class="sub-btn" onclick="return genlEnqCTRLM()">
+</div>
+</li>
+</ul>
+</form>
+</div>
+</div>
+
+<div class="logo-icon-div">
+<div class="container">
+<ul>
+<li><img src="images/logo1.png" alt="" /> </li>
+<li><img src="images/logo7.png" alt="" /> </li>
+<li><img src="images/fedemac-logo.png" alt="" /> </li>
+<li><img src="images/logo4.png" alt="" /> </li>
+<li><img src="images/iamx-logo.png" alt="" /> </li>
+<li><img src="images/camlogo.png" alt="" /> </li>
+<li><img src="images/mail-today.png" alt="" />  </li>
+<li><img src="images/ibalogo.png" alt="" /> </li>
+<li><img src="images/logoerc.png" alt="" /> </li>
+
+</ul>
+</div>
+</div>
+</div>
+
+<div class="pro-shift">
+<div class="container">
+<div class="top-heading"><h3>Our Strengths, Which makes us</h3>
+<span>the most preferable moving brand</span></div>
+<div class="clear"></div>
+<div class="map">
+<div class="coun">
+<div><span class="counter">30</span><span class="plussign">+</span></div>
+<div class="ei-se">Years of Trust</div>
+<span>Delivering Smiles Since 1987</span>
+</div>
+<div class="coun">
+<div><span class="counter">98,000</span><span class="plussign">+</span></div>
+<div class="ei-se">Moves Annually</div>
+<span>Happily Across the World</span>
+</div>
+<div class="coun">
+<div><span class="counter">2</span><span class="plussign">+</span></div>
+<div class="ei-se">Million sq.feet</div>
+<span>Warehousing Space</span>
+</div>
+<div class="coun">
+<div><span class="counter">6,000</span><span class="plussign">+</span></div>
+<div class="ei-se">Trained Manpower</div>
+<span>makes your move safe & on time</span>
+</div>
+<div class="coun">
+<div><span class="counter">100</span><span class="plussign">+</span></div>
+<div class="ei-se">Branches PAN India</div>
+<span>to cover 1264 destinations nationally & 182 countries globally</span>
+</div>
+<div class="coun">
+<div><span class="counter">1000</span><span class="plussign">+</span></div>
+<div class="ei-se">Vehicles</div>
+<span> for Every Segment and needs</span>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+
+<div class="tabing-div">
+<!--
+<div class="pro-shift">
+<div class="heading">PROUDLY SHIFTED </div>
+<div class="ei-se">Delivering Smiles Since 1987</div>
+<div class="clear"></div>
+<div class="map">
+<div class="coun">
+<div class="counter">17,45,000 </div>
+<span>families happily across the world</span>
+</div>
+<img src="images/map-img.jpg" width="475" height="221"></div>
+</div>
+-->
+<div class="our-usp">
+<div class="container">
+<div class="our-usp-left">
+<div class="tab">
+<div class="heading">OUR usp'<span>s</span></div>
+<div class="clear"></div>
+<p class="subtitle">Our Innovation, Your Delight!</p>
+<ul>
+<li><span><img src="images/cont.png" alt="" /></span> <p>TRUCKING CUBE</p></li>
+<li><span><img src="images/led.png" alt="" /></span> <p>LED BOX</p></li>
+<li><span><img src="images/pbox.png" alt="" /></span> <p>MOVING BOX</p></li>
+<li><span><img src="images/cloth.png" alt="" /></span> <p>FABRIC SHEET</p></li>
+<li><span><img src="images/plant.png" alt="" /></span> <p>PETS & PLANT CARRIER</p></li>
+<li><span><img src="images/mcycle.png" alt="" /></span> <p>Bike Stand</p></li>
+<div class="clear"></div>
+</ul>
+</div>
+</div>
+<div class="our-usp-right">
+<div class="tab-container">
+<div class="contant">
+<div class="big-img"> <img src="images/tab-img.jpg" alt="" /> </div>
+<div class="contant-icon"><span>Trucking Cube</span><span>+</span></div>
+<div class="contant-info">
+<div class="tab-heading">Trucking Cube – Your Lock, Your Key!</div>
+<div class="tab-subheading">Permanent Killer of Transshipment </div>
+<div class="texttab">Trucking Cube, an innovation by Agarwal Movers Group has provided the solution to all transportation problems. Available in different sizes, Trucking Cube is perfect for all sizes and volumes of consignment. Also, you can put your own lock on the cube and keep the  keys with you. <img src="images/home.jpg" width="120" height="80"></div>
+</div>
+</div>
+<div class="contant" >
+<div class="big-img"> <img src="images/led-box.jpg" alt="" /> </div>
+<div class="contant-icon"><span>LED/LCD Box</span><span>+</span></div>
+<div class="contant-info">
+<div class="tab-heading">LED/LCD Box</div>
+<div class="tab-subheading">For Your Delicate LED/LCD's Safety</div>
+<div class="texttab">Having hard exterior and soft cushiony interior, the specially designed LED/LCD Box provides complete safety and protection to your delicate TV during entire shifting. We possess LED/LCD Box for all standard sizes of  LED TVs available in market. <img src="images/led-box--2.jpg" width="120" height="80"> </div>
+</div>
+</div>
+<div class="contant" >
+<div class="big-img"> <img src="images/perfect-box.jpg" alt="" /> </div>
+<div class="contant-icon"><span>Moving Box</span><span>+</span></div>
+<div class="contant-info">
+<div class="tab-heading">Moving Box</div>
+<div class="tab-subheading">Ensures Safety & Maintains Radiance of Fragile </div>
+<div class="texttab">Understanding the delicacy and fragile nature of your crockery and other items, we have introduced Moving Box in our USP list. Having shock absorbent structure, moving box protects your goods from all kinds of  shocks and jerks during shifting. <img src="images/perfect.jpg" width="120" height="80"></div>
+</div>
+</div>
+<div class="contant" >
+<div class="big-img"> <img src="images/febric-sheet.png" alt="" /> </div>
+<div class="contant-icon"><span>Fabric Sheet</span><span>+</span></div>
+<div class="contant-info">
+<div class="tab-heading">Fabric Sheet</div>
+<div class="tab-subheading">Protects Your Furniture from Damages</div>
+<div class="texttab">Your exclusive furniture when packed in these specialized and re-usable sheets, feels safe and secured. This innovation of ours not only saves the cost by 26%, but also upraises the quality of service and safety by 260%. <img src="images/fabric-sheet-s.jpg" width="120" height="80">  </div>
+</div>
+</div>
+<div class="contant" >
+<div class="big-img"> <img src="images/pet-&-plants-carrier.jpg" alt="" /> </div>
+<div class="contant-icon"><span>Pet & Plants Carrier</span><span>+</span></div>
+<div class="contant-info">
+<div class="tab-heading">Pet & Plants Carrier</div>
+<div class="tab-subheading">For Your Beloved Plants & Pets</div>
+<div class="texttab">Our pet and plant carriers allow you to carry your pet and plants to the location you are moving to. Now you need not to leave your beloved plants as well as pet behind and move alone.  <img src="images/pplant.png" width="120" height="80"> </div>
+</div>
+</div>
+<div class="contant" >
+<div class="big-img"> <img src="images/bstand.png" alt="" /> </div>
+<div class="contant-icon"><span>Bike Stand</span><span>+</span></div>
+<div class="contant-info">
+<div class="tab-heading">Bike Stand</div>
+<div class="tab-subheading">Understanding your emotions with your hard-earned bike</div>
+<div class="texttab">we have came up with a new technology i.e. Bike Stand. These specially designed bike stands are shock resistant and are attached to both the tires of your bike to the truck which will prevent your bike from the shakes during transit due to the road conditions and makes zero damage to your bike.  <img src="images/pet-carrier.JPG" width="120" height="80"> </div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="full-width-box">
+<div class="container">
+<div class="left-slider">
+<div class="video-box">
+<a href="javascript:void(0);" class="videoBtn">
+
+</p>
+</div>
+
+</div>
+<div class="right-slider">
+<div class="heading">OUR CORE SERVICES</div>
+<p class="sub-title">We specialize in performing solutions at</p>
+<ul class="strength-icon">
+<li class="str-steps"><div class="str-box"><img src="images/group.png"><span>International Moving</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/building.png"><span>Domestic Moving</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/box.png"><span>Household Removal & Storage</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/truckt.png"><span>Car Carriers</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/dtruck.png"><span>Contract Logistics</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/forklift.png"><span>Commercial Moving</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/load.png"><span>Industrial Moving</span></div> </li>
+<li class="str-steps"><div class="str-box"><img src="images/warehouse.png"><span>Warehousing & Virtual Warehouse</span></div> </li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div class="our-core-service">
+<div class="container">
+<div class="core-service-left">
+<div class="core-service-heading">Certifications & Awards</div>
+<ul>
+<li><img src="images/next.png" alt="" /><b>World Book of Records Holder, London (UK)</b></li>
+<li><img src="images/next.png" alt="" />India Cargo Award - 2017</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" />HR-Value Creator Awards - 2017</li>
+<li><img src="images/next.png" alt="" />Member of <b>IAM (International Association of Movers)</b>, USA</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" />5 Times - Limca Book of Records Holder</li>
+<li><img src="images/next.png" alt="" />An ISO 39001:2012 Certified Company</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" />Company is awarded for Environment Conservation at National Level at 3rd India Road Transportation Awards, 2012</li>
+<li><img src="images/next.png" alt="" /><b>HT - HR Leadership Award 2012</b> for incorporating “Best HR Practices & CSR in Logistics & Mover Industry”</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" /><b>Pride of India - Excellent Transport & Logistics Award</b> - 2012 at AITWA Convention</li>
+<li><img src="images/next.png" alt="" />Honoured by Her Excellency Pratibha Devisingh Patil <b>(President of India)</b></li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" />Awarded for being “Leader in HR Practices and CSR in logistics & Movers industry”</li>
+<li><img src="images/next.png" alt="" />Award and Citation presented at the CEAT-IRTA 2011 award ceremony</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" /><b>The Mahindra Navistar Transport Excellence Award</b> 2011 in the fleet owner category for Alternate Thinking & Driving Positive Change</li>
+<li><img src="images/next.png" alt="" /><b>“World Spiritual Parliament Award”</b> for Spiritual Development 2011</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" />Star Brand 2011 by the Indian Consumers</li>
+<li><img src="images/next.png" alt="" />“Transport & Logistics Business of the Year Award - 2010" in the Service sector</li>
+</ul>
+<ul>
+<li><img src="images/next.png" alt="" />“Business Sphere Award” 2005 at FICCI</li>
+<li><img src="images/next.png" alt="" /><b>“Pride of India Award”</b> at National Convention 2005 AITWA</li>
+</ul>
+
+<!--
+<div class="cov">
+<div class="core-service-subheading">Wide Range of Services Offered</div>
+<div class="core-text">We, Agarwal Packers and Movers Ltd ensure that “Nothing other than place changes”. Offering a wide range of services associated packing and moving and logistics industry, we have become the number one choice of people. We shoulder your all worries and tensions by putting you at complete ease.</div>
+</div>
+<div class="full"><img width="400" height="241" src="images/core-img3.jpg"></div>
+<div class="full">
+<div class="full-text">
+<div class="full-text-heading">Car Transportation Services</div>
+<p>We understand that all of your belongings are dear to you and you cannot afford a single scratch on them, especially when the item is as big and expensive as car. Therefor, we have specially designed car carriers that ensure safe and scratch free relocation of your car.</p>
+</div>
+
+</div>
+-->
+
+
+</div>
+<div class="core-service-right">
+<div class="full-text">
+<p><b>Our Hon’ble Minister of Road Transport & Highways – Shri Nitin Gadkari</b> launched our mobile app – <b>APML Suvidha</b> and appreciated the vision for offering best-in-class moving services in core packing and moving activities.</p>
+</div>
+<!--
+<ul class="core-service-slider">
+<li>
+<div class="core-1">
+<div class="half"><img src="images/core-img1.jpg" width="400" height="241"></div>
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Domestic Shifting </div>
+<p>With our 100 plus branches, we are covering 1264 locations all across PAN India. Rendering services from almost three decades, we have gained so much supremacy in shifting regime, that we are considered as best moving service providing company.</p>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="core-2">
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">International Moving</div>
+<p>With our efficient and excellent services we are covering 182 countries all across the world. Also, we have set our office in Singapore. Our team possesses the complete knowledge of international standards, and accordingly packs and moves your goods to your desired location.</p>
+</div>
+</div>
+<div class="half"><img src="images/core-img2.jpg" width="400" height="241"></div>
+<div class="clear"></div>
+</div>
+<div class="core-3">
+<div class="half"><img src="images/corporate-shifting.jpg" width="400" height="241"></div>
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Corporate Moving</div>
+<p>We take pride in being experienced and competent to render unmatched and effective corporate shifting services. Without hampering your work, you can shift your office easily and with complete safety.</p>
+</div>
+
+</div>
+<div class="clear"></div>
+</div>
+</li>
+<li>
+<div class="core-1">
+<div class="half"><img src="images/core-img1.jpg" width="400" height="241"></div>
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Warehouse and Storage Services</div>
+<p>Covering all areas of logistics sector, we are providing efficient and excellent warehouse and storage services. Bank your excessive valuable belongings at our storage and get back them whenever you want.</p>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="core-2">
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Lorem Ipsum is simply dummy</div>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+</div>
+<div class="half"><img src="images/core-img2.jpg" width="400" height="241"></div>
+<div class="clear"></div>
+</div>
+<div class="core-3">
+<div class="half"><img src="images/core-img3.jpg" width="400" height="241"></div>
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Lorem Ipsum is simply dummy</div>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+
+</div>
+<div class="clear"></div>
+</div>
+</li>
+<li>
+<div class="core-1">
+<div class="half"><img src="images/core-img1.jpg" width="400" height="241"></div>
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Lorem Ipsum is simply dummy</div>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="core-2">
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Lorem Ipsum is simply dummy</div>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+</div>
+<div class="half"><img src="images/core-img2.jpg" width="400" height="241"></div>
+<div class="clear"></div>
+</div>
+<div class="core-3">
+<div class="half"><img src="images/core-img3.jpg" width="400" height="241"></div>
+<div class="half">
+<div class="half-text">
+<div class="half-text-heading">Lorem Ipsum is simply dummy</div>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+</div>
+
+</div>
+<div class="clear"></div>
+</div>
+</li>
+</ul> -->
+</div>
+<div class="clear"></div>
+</div>
+</div>
+
+<div class="feature-on" style="border-bottom:0; margin-bottom:0;">
+<div class="sm-hed">Featured on : </div>
+<ul class="feature-slider">
+<li><img src="images/flogo1.png" alt="" />
+<!--<div class="poputext">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>-->
+</li>
+<li><img src="images/flogo2.png" alt="" /></li>
+<li><img src="images/flogo3.png" alt="" /></li>
+<li><img src="images/flogo4.png" alt="" /></li>
+<li><img src="images/flogo5.png" alt="" /></li>
+<li><img src="images/flogo6.png" alt="" /></li>
+</ul>
+<div class="clear"></div>
+</div>
+
+<div class="client-say">
+<div class="container">
+<div class="client-heading">what our client says?</div>
+<ul  class="client-slider">
+<li>
+<div class="client-wrap">
+<div class="client-text">Your team very carefully and meticulously packed all items and got them transported safely to two destinations. This is to acknowledge the superb service rendered by your company.</div>
+<div class="client-img"><img src="images/E_Sreedharan.jpg" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Mr. E. Sreedharan</div>
+<p>Principal Advisor<br>
+Delhi Metro Rail Corporation Ltd.</p>
+</div>
+<div class="clear"></div>
+<h3>Relocated From <span>New Delhi to Kerala</span></h3>
+</div>
+</li>
+<li>
+<div class="client-wrap">
+<div class="client-text">The staff of Agarwal Packers & Movers Company and the Chairman in particular have rendered outstanding service which is both efficient and polite. I wish them success.</div>
+<div class="client-img"><img src="images/t-n-seshan.jpg" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Mr. T. N. Seshan</div>
+<p>Former Chief<br> Election Commissioner of India</p>
+</div>
+
+<div class="clear"></div>
+<h3>Relocated From <span>New Delhi to Hyderabad</span></h3>
+</div>
+</li>
+<li>
+<div class="client-wrap">
+<div class="client-text">In one word – it was excellent and I was very surprised with the packing technique they used. I’ll rate them 10 out of 10 and I have been referring their services to lot of my friends and they are equally satisfied.</div>
+<div class="client-img"><img src="images/sunilsrivastava.jpg" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Mr. Sunil Srivastava</div>
+<p>Dy. Managing Director,<br>State Bank of India</p>
+</div>
+<div class="clear"></div>
+<h3>Relocated From <span>Mumbai to Ranchi</span></h3>
+</div>
+</li>
+<li>
+<div class="client-wrap">
+<div class="client-text">I found the personnel in the company courteous, hard working, sincere and methodical. I find that company management has set very high standards to ensure complete customer satisfaction.</div>
+<div class="client-img"><img src="images/Farooqui.png" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Mr. M. F. Farooqui</div>
+<p>Joint Secretary (BC)<br>
+Dept. of Economic Affairs</p>
+</div>
+<div class="clear"></div>
+<h3>Relocated From <span>Delhi to Noida</span></h3>
+</div>
+</li>
+
+<li>
+<div class="client-wrap">
+<div class="client-text">This is to place on record our appreciation for excellent packing and support job provided by M/s Agarwal Packers and Movers Ltd for shifting the personal belongings of Dr. A. P. J. Abdul Kalam, Former President of India.</div>
+<div class="client-img"><img src="images/rkrasad.png" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Mr. R K Prasad</div>
+<p>Private Secretary to the Former <br>
+President of India (Dr. A.P. J. Abdul Kalam)</p>
+</div>
+<div class="clear"></div>
+</div>
+</li>
+<li>
+<div class="client-wrap">
+<div class="client-text">Excellent service provided. If only I had known about Agarwal Packers & Movers, my wife could have been spared endless hours doing the same, when we shifted our house recently.</div>
+<div class="client-img"><img src="images/thanks1.jpg" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Dr. S. V. Eswaran</div>
+<p>Emeritus Scientist<br>SCIR & Emeritus Professor, ACSIR</p>
+</div>
+<div class="clear"></div>
+</div>
+</li>
+
+<li>
+<div class="client-wrap">
+<div class="client-text">I work in a service industry too and I can stamp with guarantee that your company is the best and your workforce along with supervisors is asset of your company.</div>
+<div class="client-img"><img src="images/pratimathakur.jpg" width="62" height="65"></div>
+<div class="client-dst">
+<div class="client-name">Ms. Pratima Thakur</div>
+<p>Associate Director Airline Contracting<br>MakeMyTrip. com</p>
+</div>
+<div class="clear"></div>
+</div>
+</li>
+</ul>
+<div class="clear"></div>
+</div>
+</div>
+
+<div class="feature-on bottom-feature" style="border-bottom:0; margin-bottom:0;">
+<div class="sm-hed">our clients : </div>
+<ul class="ourclient-slider">
+<li><img src="images/airtel.png" alt="" /></li>
+<li><img src="images/apollo.png" alt="" /></li>
+<li><img src="images/asian-paints.png" alt="" /></li>
+<li><img src="images/godrej.png" alt="" /></li>
+<li><img src="images/havells.png" alt="" /></li>
+<li><img src="images/hyundai.png" alt="" /></li>
+<li><img src="images/pepsico.png" alt="" /></li>
+<li><img src="images/suzuki.png" alt="" /></li>
+<li><img src="images/tata.png" alt="" /></li>
+</ul>
+<div class="clear"></div>
+</div>
+
+<div class="nation-wise">
+<div class="container">
+<div class="nation-heading">Branch Offices - </div>
+<div class='marquee-with-options'>
+<ul>
+<li>Agra</li>
+<li>Ambala</li>
+<li>Allahabad</li>
+<li>Aurangabad</li>
+<li>Ahmedabad</li>
+<li>Ankleshwar</li>
+<li>Banaras</li>
+<li>Bhopal</li>
+<li>Baroda</li>
+<li>Bangalore</li>
+<li>Bhubaneswar</li>
+<li>Bhuj</li>
+<li>Chandigarh</li>
+<li>Cuttack</li>
+<li>Coimbatore</li>
+<li>Calicut</li>
+<li>Cochin</li>
+<li>Chennai</li>
+<li>Dehradun</li>
+<li>Delhi</li>
+<li>Faridabad</li>
+<li>Goa</li>
+<li>Gurgaon</li>
+<li>Gwalior</li>
+<li>Gandhidham</li>
+<li>Ghaziabad</li>
+<li>Guwahati</li>
+<li>Haridwar</li>
+<li>Hisar</li>
+<li>Hubli</li>
+<li>Hyderabad</li>
+<li> Indore</li>
+<li>Jabalpur</li>
+<li>Jamshedpur</li>
+<li>Jodhpur</li>
+<li>Jaipur</li>
+<li>Jammu</li>
+<li>Kanpur</li>
+<li>Kolkata</li>
+<li>Korba</li>
+<li>Kalighat</li>
+<li>Kolhapur</li>
+<li>Kottayam</li>
+<li>Ludhiana</li>
+<li>Lucknow</li>
+<li>Meerut</li>
+<li>Madurai</li>
+<li> Mumbai</li>
+<li>Mysore</li>
+<li>Mangalore</li>
+<li>Nagpur</li>
+<li>Navi Mumba</li>i
+<li>Nashik</li>
+<li>Noida</li>
+<li>Panipat</li>
+<li>Patna</li>
+<li>Patalganga</li>
+<li>Pondichery</li>
+<li>Port Blair</li>
+<li>Pune</li>
+<li>Raipur</li>
+<li>Ranchi</li>
+<li>Rajkot</li>
+<li>Rourkela</li>
+<li>Rudrapur</li>
+<li>Raigarh</li>
+<li>Secunderabad</li>
+<li>Siliguri</li>
+<li>Surat</li>
+<li>Tinsukia</li>
+<li>Tirupur</li>
+<li>Trivandrum</li>
+<li>Trichy</li>
+<li>Udaipur</li>
+<li>Varanasi</li>
+<li>Vapi</li>
+<li>Vijaywada</li>
+<li>Vishakhapatnam</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="footer">
+<div class="container">
+<div class="limca-logo"><img src="images/limca.png" width="76" height="77"></div>
+<div class="footer-icon-box">
+<p>EMI option Available with all Major Credit Cards</p>
+<p><a><img src="images/accept-img.png" width="160" height="41"></a></p>
+</div>
+<div class="line">&nbsp;</div>
+<p>Your personal information submitted will not be sold, shared or rented to others. We use this information to send updates about our company and projects and contact you, if required or find it necessary. You may opt out of receiving our communication by calling us on any of our above mentioned contact numbers or by clicking on the unsubscribed link mentioned in mail.</p>
+<p>Agarwal Packers and Movers Ltd. All Rights Reserved (Terms of Use)  <a href="#">Privacy Policy</a> <a href="#">Terms & Conditions</a></p>
+</div>
+</div>
+</div>
+
+<script>
+$('.videoBtn').click(function(){
+$('#video1').show();
+});
+$('.close-btn').click(function(){
+$('#video1').hide();
+});
+</script>
+<script>
+$('.contant-icon').click(function(){
+$('.contant-info').show();
+});
+$('body').blur(function(){
+$('.contant-info').hide();
+});
+</script>
+<script>$(document).ready(function(){$(window).scroll(function(){$('.str-steps').each(function(){var bottom_of_object=$(this).offset().top+$(this).outerHeight();var bottom_of_window=$(window).scrollTop()+$(window).height();if(bottom_of_window>bottom_of_object){$(this).animate({'opacity':'1'},50)}})})})</script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-56848751-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+<!-- Google Code for Remarketing Tag -->
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 984878498;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/984878498/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<script type="text/javascript">
+function authchkcaptchavl(cdivid,emsgdid){
+var gtvalcaptcha=document.getElementById(cdivid).value;
+var fdivId=document.getElementById(cdivid);
+var divId=document.getElementById(emsgdid);
+$.ajax({
+type:"POST",
+url:"https://www.agarwalpackers.com/otheractionctrlmst.html",
+data:"sndauthcaptchavl="+gtvalcaptcha,
+success:function(data){
+if(data == "Invalid"){
+fdivId.value="";
+divId.innerHTML=data;
+divId.style.color="#e30808";
+} else {
+divId.innerHTML="";	
+}
+}
+});
+}
+</script>
+</body>
+</html>
